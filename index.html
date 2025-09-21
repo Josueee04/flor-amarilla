@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tu flor amarilla especial 🌼</title>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <title>Tu Flor Amarilla Especial 🌼</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -13,7 +13,7 @@
     }
     
     body {
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Quicksand', sans-serif;
       background: linear-gradient(135deg, #fff8dc, #fffacd, #fff0b3);
       text-align: center;
       padding: 20px;
@@ -29,17 +29,16 @@
     .container {
       max-width: 600px;
       width: 100%;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.9);
+      padding: 25px;
+      background: rgba(255, 255, 255, 0.92);
       border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(255, 204, 0, 0.2);
+      box-shadow: 0 10px 30px rgba(255, 204, 0, 0.25);
       margin: 20px 0;
     }
     
     h1 {
-      font-family: 'Dancing Script', cursive;
       color: #e6b800;
-      font-size: 2.5rem;
+      font-size: 2.3rem;
       margin-bottom: 20px;
       text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     }
@@ -47,32 +46,35 @@
     p {
       margin: 15px 0;
       line-height: 1.6;
+      font-size: 1.1rem;
     }
     
     .btn-container {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      margin: 20px 0;
+      margin: 25px 0;
+      gap: 12px;
     }
     
     button {
       background: linear-gradient(to bottom, #ffdb4d, #ffcc00);
       border: none;
-      padding: 12px 24px;
-      margin: 10px;
+      padding: 14px 28px;
+      margin: 8px;
       border-radius: 50px;
-      font-size: 1rem;
+      font-size: 1.05rem;
       cursor: pointer;
       transition: all 0.3s;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      font-weight: 500;
-      min-width: 120px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+      font-weight: 600;
+      min-width: 140px;
+      color: #333;
     }
     
     button:hover {
       transform: translateY(-3px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.18);
       background: linear-gradient(to bottom, #ffe066, #ffd11a);
     }
     
@@ -80,13 +82,85 @@
       transform: translateY(1px);
     }
     
-    #flor {
-      font-size: 100px;
+    .girasol-container {
+      position: relative;
+      height: 300px;
       margin: 30px 0;
-      opacity: 0;
-      transform: scale(0.1) rotate(-180deg);
-      transition: all 1s ease-in-out;
-      filter: drop-shadow(0 5px 10px rgba(230, 184, 0, 0.4));
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    
+    .girasol {
+      position: relative;
+      width: 120px;
+      height: 0;
+      display: flex;
+      justify-content: center;
+      transition: height 2s ease-in-out;
+    }
+    
+    .tallo {
+      position: absolute;
+      width: 10px;
+      height: 100%;
+      background: linear-gradient(to bottom, #7cb342, #558b2f);
+      border-radius: 5px;
+      bottom: 0;
+    }
+    
+    .hoja {
+      position: absolute;
+      width: 40px;
+      height: 30px;
+      background: #7cb342;
+      border-radius: 50% 0 50% 50%;
+      transform: rotate(-45deg);
+      z-index: 1;
+    }
+    
+    .hoja.izquierda {
+      left: -15px;
+      top: 60%;
+    }
+    
+    .hoja.derecha {
+      right: -15px;
+      top: 40%;
+      transform: rotate(135deg);
+      border-radius: 50% 50% 50% 0;
+    }
+    
+    .flor {
+      position: absolute;
+      top: 0;
+      width: 100px;
+      height: 100px;
+      background: #ffeb3b;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 15px rgba(255, 193, 7, 0.6);
+      transform-origin: center bottom;
+      animation: none;
+    }
+    
+    .centro {
+      width: 50px;
+      height: 50px;
+      background: #5d4037;
+      border-radius: 50%;
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+    
+    .petalo {
+      position: absolute;
+      width: 35px;
+      height: 60px;
+      background: #ffd54f;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
     }
     
     #mensaje {
@@ -95,8 +169,8 @@
       color: #444;
       opacity: 0;
       transition: opacity 1.5s ease-in-out;
-      font-family: 'Dancing Script', cursive;
       line-height: 1.6;
+      padding: 0 10px;
     }
     
     .pregunta {
@@ -112,11 +186,6 @@
       color: #ff4d4d;
       display: inline-block;
       animation: latido 1.5s infinite;
-    }
-    
-    .mostrar {
-      opacity: 1 !important;
-      transform: scale(1) rotate(0deg) !important;
     }
     
     .flores-fondo {
@@ -182,23 +251,29 @@
       }
     }
     
+    @keyframes mecer {
+      0% { transform: rotate(-2deg); }
+      50% { transform: rotate(2deg); }
+      100% { transform: rotate(-2deg); }
+    }
+    
     @media (max-width: 600px) {
       h1 {
-        font-size: 2rem;
+        font-size: 1.9rem;
       }
       
       button {
-        padding: 10px 20px;
-        font-size: 0.9rem;
-        min-width: 110px;
-      }
-      
-      #flor {
-        font-size: 80px;
+        padding: 12px 24px;
+        font-size: 1rem;
+        min-width: 120px;
       }
       
       #mensaje {
         font-size: 1.1rem;
+      }
+      
+      .container {
+        padding: 20px 15px;
       }
     }
   </style>
@@ -220,8 +295,8 @@
       <h1>¿Sabes qué representa la flor amarilla?</h1>
       <p>Es símbolo de amistad, alegría y cariño sincero</p>
       <div class="btn-container">
-        <button onclick="responder('sí', 2)">¡Qué bonito! 💛</button>
-        <button onclick="responder('no', 2)">Cuéntame más</button>
+        <button onclick="responder('sabes', 2)">¡Qué bonito! 💛</button>
+        <button onclick="responder('cuentame', 2)">Cuéntame más</button>
       </div>
     </div>
     
@@ -229,8 +304,8 @@
       <h1>¿Recuerdas nuestro primer día juntos?</h1>
       <p>Ese día supe que quería estar a tu lado</p>
       <div class="btn-container">
-        <button onclick="responder('sí', 3)">¡Cómo olvidarlo! 💛</button>
-        <button onclick="responder('no', 3)">Recuérdamelo</button>
+        <button onclick="responder('recuerdo', 3)">¡Cómo olvidarlo! 💛</button>
+        <button onclick="responder('recuerdame', 3)">Recuérdamelo</button>
       </div>
     </div>
     
@@ -238,8 +313,8 @@
       <h1>¿Sabes por qué te mereces esta flor?</h1>
       <p>Porque iluminas mis días con tu sonrisa</p>
       <div class="btn-container">
-        <button onclick="responder('sí', 4)">Eres tan dulce 💛</button>
-        <button onclick="responder('no', 4)">¿Por qué?</button>
+        <button onclick="responder('mereces', 4)">Eres tan dulce 💛</button>
+        <button onclick="responder('porque', 4)">¿Por qué?</button>
       </div>
     </div>
     
@@ -256,7 +331,26 @@
       <div class="barra-progreso" id="barraProgreso"></div>
     </div>
     
-    <div id="flor">🌼</div>
+    <div class="girasol-container" id="girasolContainer">
+      <div class="girasol" id="girasol">
+        <div class="tallo"></div>
+        <div class="hoja izquierda"></div>
+        <div class="hoja derecha"></div>
+        <div class="flor" id="flor">
+          <div class="centro"></div>
+          <div class="petalo" style="transform: rotate(0deg); top: -25px;"></div>
+          <div class="petalo" style="transform: rotate(45deg); top: -15px; right: -5px;"></div>
+          <div class="petalo" style="transform: rotate(90deg); top: 10px; right: -20px;"></div>
+          <div class="petalo" style="transform: rotate(135deg); top: 40px; right: -15px;"></div>
+          <div class="petalo" style="transform: rotate(180deg); top: 55px; right: 5px;"></div>
+          <div class="petalo" style="transform: rotate(225deg); top: 55px; left: 5px;"></div>
+          <div class="petalo" style="transform: rotate(270deg); top: 40px; left: -15px;"></div>
+          <div class="petalo" style="transform: rotate(315deg); top: 10px; left: -20px;"></div>
+          <div class="petalo" style="transform: rotate(360deg); top: -15px; left: -5px;"></div>
+        </div>
+      </div>
+    </div>
+    
     <div id="mensaje"></div>
   </div>
 
@@ -279,6 +373,27 @@
     }
     
     function responder(respuesta, numeroPregunta) {
+      // Si estamos en la pregunta 2 y el usuario quiere saber más
+      if (numeroPregunta === 2 && respuesta === 'cuentame') {
+        document.getElementById('pregunta2').querySelector('p').innerHTML = 
+          "Las flores amarillas representan la amistad, la alegría y la felicidad. Pero para mí, representan también el calor de tu sonrisa y la luz que aportas a mi vida cada día.";
+        return;
+      }
+      
+      // Si estamos en la pregunta 3 y el usuario quiere que le recuerden
+      if (numeroPregunta === 3 && respuesta === 'recuerdame') {
+        document.getElementById('pregunta3').querySelector('p').innerHTML = 
+          "Recuerdo tu sonrisa, tu mirada y cómo el tiempo pareció detenerse. Fue el día que comenzó esta hermosa historia que seguimos escribiendo juntos.";
+        return;
+      }
+      
+      // Si estamos en la pregunta 4 y el usuario pregunta por qué
+      if (numeroPregunta === 4 && respuesta === 'porque') {
+        document.getElementById('pregunta4').querySelector('p').innerHTML = 
+          "Porque eres una persona increíble que ilumina cada uno de mis días. Por tu bondad, tu amor y tu forma única de hacer feliz a los demás.";
+        return;
+      }
+      
       // Avanzar la barra de progreso
       const barraProgreso = document.getElementById('barraProgreso');
       barraProgreso.style.width = (preguntaActual / totalPreguntas * 100) + '%';
@@ -293,9 +408,6 @@
         setTimeout(() => {
           document.getElementById('pregunta' + preguntaActual).classList.add('activa');
         }, 400);
-      } else {
-        // Si es la última pregunta, mostrar la flor
-        setTimeout(mostrarFlorFinal, 500);
       }
     }
     
@@ -308,25 +420,33 @@
         document.getElementById('pregunta' + i).classList.remove('activa');
       }
       
-      // Mostrar la flor y el mensaje
+      // Mostrar la flor con animación
+      const girasol = document.getElementById('girasol');
       const flor = document.getElementById('flor');
       const mensaje = document.getElementById('mensaje');
       
-      flor.classList.add('mostrar');
+      // Hacer crecer el girasol desde abajo
+      girasol.style.height = '280px';
       
+      // Después de que crezca, agregar animación de mecido
       setTimeout(() => {
-        mensaje.innerHTML = `
-          Para mi persona favorita:<br><br>
-          Esta flor amarilla representa todo lo que siento por ti:<br>
-          - La alegría que me das cada día <span class="corazon">💛</span><br>
-          - La calidez de tu amor que ilumina mi vida <span class="corazon">💛</span><br>
-          - La amistad que fortalece nuestro romance <span class="corazon">💛</span><br><br>
-          Gracias por ser tú. Te amo más de lo que las palabras pueden expresar.<br><br>
-          Atentamente,<br>
-          Tu novia que te adora <span class="corazon">💛</span>
-        `;
-        mensaje.style.opacity = "1";
-      }, 1000);
+        flor.style.animation = 'mecer 3s ease-in-out infinite';
+        
+        // Mostrar mensaje
+        setTimeout(() => {
+          mensaje.innerHTML = `
+            Para mi persona favorita:<br><br>
+            Esta flor amarilla representa todo lo que siento por ti:<br>
+            - La alegría que me das cada día <span class="corazon">💛</span><br>
+            - La calidez de tu amor que ilumina mi vida <span class="corazon">💛</span><br>
+            - La amistad que fortalece nuestro romance <span class="corazon">💛</span><br><br>
+            Gracias por ser tú. Te amo más de lo que las palabras pueden expresar.<br><br>
+            Atentamente,<br>
+            Tu novia que te adora <span class="corazon">💛</span>
+          `;
+          mensaje.style.opacity = "1";
+        }, 1000);
+      }, 2000);
     }
     
     function insistir() {
@@ -335,3 +455,4 @@
   </script>
 </body>
 </html>
+
