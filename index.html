@@ -82,7 +82,7 @@
       transform: translateY(1px);
     }
     
-    .girasol-container {
+    .ramo-container {
       position: relative;
       height: 300px;
       margin: 30px 0;
@@ -93,7 +93,7 @@
     }
     
     .girasol {
-      position: relative;
+      position: absolute;
       width: 120px;
       height: 0;
       display: flex;
@@ -101,9 +101,25 @@
       transition: height 2s ease-in-out;
     }
     
+    .girasol:nth-child(1) {
+      left: 25%;
+      transform: translateX(-50%);
+    }
+    
+    .girasol:nth-child(2) {
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+    
+    .girasol:nth-child(3) {
+      left: 75%;
+      transform: translateX(-50%);
+    }
+    
     .tallo {
       position: absolute;
-      width: 10px;
+      width: 8px;
       height: 100%;
       background: linear-gradient(to bottom, #7cb342, #558b2f);
       border-radius: 5px;
@@ -112,21 +128,21 @@
     
     .hoja {
       position: absolute;
-      width: 40px;
-      height: 25px;
+      width: 35px;
+      height: 22px;
       background: #7cb342;
       border-radius: 50% 0 50% 50%;
       z-index: 1;
     }
     
     .hoja.izquierda {
-      left: -15px;
+      left: -12px;
       top: 60%;
       transform: rotate(-30deg);
     }
     
     .hoja.derecha {
-      right: -15px;
+      right: -12px;
       top: 40%;
       transform: rotate(120deg);
       border-radius: 50% 50% 50% 0;
@@ -135,8 +151,8 @@
     .flor {
       position: absolute;
       top: 0;
-      width: 100px;
-      height: 100px;
+      width: 90px;
+      height: 90px;
       background: #ffeb3b;
       border-radius: 50%;
       display: flex;
@@ -148,8 +164,8 @@
     }
     
     .centro {
-      width: 50px;
-      height: 50px;
+      width: 45px;
+      height: 45px;
       background: #5d4037;
       border-radius: 50%;
       box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
@@ -157,20 +173,24 @@
     
     .petalo {
       position: absolute;
-      width: 35px;
-      height: 60px;
+      width: 30px;
+      height: 50px;
       background: #ffd54f;
       border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
     }
     
     #mensaje {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       margin: 20px 0;
       color: #444;
       opacity: 0;
       transition: opacity 1.5s ease-in-out;
       line-height: 1.6;
       padding: 0 10px;
+      text-align: left;
+      background: rgba(255, 248, 225, 0.7);
+      border-radius: 15px;
+      padding: 20px;
     }
     
     .pregunta {
@@ -185,25 +205,6 @@
     .corazon {
       color: #ff4d4d;
       display: inline-block;
-      animation: latido 1.5s infinite;
-    }
-    
-    .flores-fondo {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: -1;
-      opacity: 0.15;
-    }
-    
-    .flor-fondo {
-      position: absolute;
-      font-size: 30px;
-      opacity: 0;
-      animation: caer 10s linear infinite;
     }
     
     .progreso {
@@ -228,33 +229,12 @@
       to { opacity: 1; transform: translateY(0); }
     }
     
-    @keyframes latido {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
-    }
-    
-    @keyframes caer {
-      0% { 
-        transform: translateY(-50px) rotate(0deg); 
-        opacity: 0;
-      }
-      10% { 
-        opacity: 1;
-      }
-      90% { 
-        opacity: 0.8;
-      }
-      100% { 
-        transform: translateY(100vh) rotate(360deg); 
-        opacity: 0;
-      }
-    }
-    
     @keyframes mecer {
-      0% { transform: rotate(-2deg); }
-      50% { transform: rotate(2deg); }
-      100% { transform: rotate(-2deg); }
+      0% { transform: translateX(0) rotate(0deg); }
+      25% { transform: translateX(-2px) rotate(-1deg); }
+      50% { transform: translateX(0) rotate(0deg); }
+      75% { transform: translateX(2px) rotate(1deg); }
+      100% { transform: translateX(0) rotate(0deg); }
     }
     
     @media (max-width: 600px) {
@@ -269,18 +249,35 @@
       }
       
       #mensaje {
-        font-size: 1.1rem;
+        font-size: 1rem;
       }
       
       .container {
         padding: 20px 15px;
       }
+      
+      .girasol {
+        width: 100px;
+      }
+      
+      .flor {
+        width: 80px;
+        height: 80px;
+      }
+      
+      .centro {
+        width: 40px;
+        height: 40px;
+      }
+      
+      .petalo {
+        width: 25px;
+        height: 45px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="flores-fondo" id="floresFondo"></div>
-  
   <div class="container">
     <div class="pregunta activa" id="pregunta1">
       <h1>Hola Jessinet 💛</h1>
@@ -292,18 +289,19 @@
     </div>
     
     <div class="pregunta" id="pregunta2">
-      <h1>¿Sabes por qué te mereces una flor?</h1>
+      <h1>¿Sabes por qué mereces un ramo de flores?</h1>
       <p>Porque eres una amiga increíble</p>
       <div class="btn-container">
-        <button onclick="responder('siguiente', 2)">Siguiente 💛</button>
+        <button onclick="responder('razones', 2)">Dime por qué 💛</button>
+        <button onclick="responder('aceptar', 2)">¡Claro que sí! 🌻</button>
       </div>
     </div>
     
     <div class="pregunta" id="pregunta3">
       <h1>Última pregunta...</h1>
-      <p>¿Aceptas esta flor como símbolo de mi amistad?</p>
+      <p>¿Aceptas este ramo de girasoles como símbolo de mi amistad?</p>
       <div class="btn-container">
-        <button onclick="mostrarFlorFinal()">¡Sí, acepto! 💛</button>
+        <button onclick="mostrarRamoFinal()">¡Sí, acepto! 💛</button>
         <button onclick="insistir()">Tal vez después</button>
       </div>
     </div>
@@ -312,22 +310,58 @@
       <div class="barra-progreso" id="barraProgreso"></div>
     </div>
     
-    <div class="girasol-container" id="girasolContainer">
-      <div class="girasol" id="girasol">
+    <div class="ramo-container" id="ramoContainer">
+      <div class="girasol" id="girasol1">
         <div class="tallo"></div>
         <div class="hoja izquierda"></div>
         <div class="hoja derecha"></div>
-        <div class="flor" id="flor">
+        <div class="flor">
           <div class="centro"></div>
-          <div class="petalo" style="transform: rotate(0deg); top: -25px;"></div>
-          <div class="petalo" style="transform: rotate(45deg); top: -15px; right: -5px;"></div>
-          <div class="petalo" style="transform: rotate(90deg); top: 10px; right: -20px;"></div>
-          <div class="petalo" style="transform: rotate(135deg); top: 40px; right: -15px;"></div>
-          <div class="petalo" style="transform: rotate(180deg); top: 55px; right: 5px;"></div>
-          <div class="petalo" style="transform: rotate(225deg); top: 55px; left: 5px;"></div>
-          <div class="petalo" style="transform: rotate(270deg); top: 40px; left: -15px;"></div>
-          <div class="petalo" style="transform: rotate(315deg); top: 10px; left: -20px;"></div>
-          <div class="petalo" style="transform: rotate(360deg); top: -15px; left: -5px;"></div>
+          <div class="petalo" style="transform: rotate(0deg); top: -20px;"></div>
+          <div class="petalo" style="transform: rotate(45deg); top: -12px; right: -4px;"></div>
+          <div class="petalo" style="transform: rotate(90deg); top: 8px; right: -16px;"></div>
+          <div class="petalo" style="transform: rotate(135deg); top: 32px; right: -12px;"></div>
+          <div class="petalo" style="transform: rotate(180deg); top: 44px; right: 4px;"></div>
+          <div class="petalo" style="transform: rotate(225deg); top: 44px; left: 4px;"></div>
+          <div class="petalo" style="transform: rotate(270deg); top: 32px; left: -12px;"></div>
+          <div class="petalo" style="transform: rotate(315deg); top: 8px; left: -16px;"></div>
+          <div class="petalo" style="transform: rotate(360deg); top: -12px; left: -4px;"></div>
+        </div>
+      </div>
+      
+      <div class="girasol" id="girasol2">
+        <div class="tallo"></div>
+        <div class="hoja izquierda"></div>
+        <div class="hoja derecha"></div>
+        <div class="flor">
+          <div class="centro"></div>
+          <div class="petalo" style="transform: rotate(0deg); top: -20px;"></div>
+          <div class="petalo" style="transform: rotate(45deg); top: -12px; right: -4px;"></div>
+          <div class="petalo" style="transform: rotate(90deg); top: 8px; right: -16px;"></div>
+          <div class="petalo" style="transform: rotate(135deg); top: 32px; right: -12px;"></div>
+          <div class="petalo" style="transform: rotate(180deg); top: 44px; right: 4px;"></div>
+          <div class="petalo" style="transform: rotate(225deg); top: 44px; left: 4px;"></div>
+          <div class="petalo" style="transform: rotate(270deg); top: 32px; left: -12px;"></div>
+          <div class="petalo" style="transform: rotate(315deg); top: 8px; left: -16px;"></div>
+          <div class="petalo" style="transform: rotate(360deg); top: -12px; left: -4px;"></div>
+        </div>
+      </div>
+      
+      <div class="girasol" id="girasol3">
+        <div class="tallo"></div>
+        <div class="hoja izquierda"></div>
+        <div class="hoja derecha"></div>
+        <div class="flor">
+          <div class="centro"></div>
+          <div class="petalo" style="transform: rotate(0deg); top: -20px;"></div>
+          <div class="petalo" style="transform: rotate(45deg); top: -12px; right: -4px;"></div>
+          <div class="petalo" style="transform: rotate(90deg); top: 8px; right: -16px;"></div>
+          <div class="petalo" style="transform: rotate(135deg); top: 32px; right: -12px;"></div>
+          <div class="petalo" style="transform: rotate(180deg); top: 44px; right: 4px;"></div>
+          <div class="petalo" style="transform: rotate(225deg); top: 44px; left: 4px;"></div>
+          <div class="petalo" style="transform: rotate(270deg); top: 32px; left: -12px;"></div>
+          <div class="petalo" style="transform: rotate(315deg); top: 8px; left: -16px;"></div>
+          <div class="petalo" style="transform: rotate(360deg); top: -12px; left: -4px;"></div>
         </div>
       </div>
     </div>
@@ -338,20 +372,6 @@
   <script>
     let preguntaActual = 1;
     const totalPreguntas = 3;
-    
-    // Crear flores de fondo
-    const floresFondo = document.getElementById('floresFondo');
-    const flores = ['🌼', '🌻', '💛', '✨'];
-    
-    for (let i = 0; i < 20; i++) {
-      const flor = document.createElement('div');
-      flor.className = 'flor-fondo';
-      flor.innerHTML = flores[Math.floor(Math.random() * flores.length)];
-      flor.style.left = Math.random() * 100 + 'vw';
-      flor.style.animationDelay = Math.random() * 10 + 's';
-      flor.style.fontSize = (Math.random() * 20 + 20) + 'px';
-      floresFondo.appendChild(flor);
-    }
     
     function responder(respuesta, numeroPregunta) {
       // Si estamos en la pregunta 1
@@ -364,15 +384,20 @@
             "¡Jajaja lo sabía! Eres la mejor 💛";
         }
         
-        // Esperar un momento y luego avanzar
-        setTimeout(() => {
-          avanzarPregunta();
-        }, 2000);
+        avanzarPregunta();
         return;
       }
       
-      // Para la pregunta 2, simplemente avanzar
+      // Si estamos en la pregunta 2
       if (numeroPregunta === 2) {
+        if (respuesta === 'razones') {
+          document.getElementById('pregunta2').querySelector('p').innerHTML = 
+            "Porque iluminas cada día con tu alegría, tu bondad y tu amistad sincera. Eres única 💛";
+        } else {
+          document.getElementById('pregunta2').querySelector('p').innerHTML = 
+            "¡Sabía que estarías de acuerdo! Eres realmente especial 🌻";
+        }
+        
         avanzarPregunta();
       }
     }
@@ -395,7 +420,7 @@
       }
     }
     
-    function mostrarFlorFinal() {
+    function mostrarRamoFinal() {
       // Completar la barra de progreso
       document.getElementById('barraProgreso').style.width = '100%';
       
@@ -404,37 +429,46 @@
         document.getElementById('pregunta' + i).classList.remove('activa');
       }
       
-      // Mostrar la flor con animación
-      const girasol = document.getElementById('girasol');
-      const flor = document.getElementById('flor');
+      // Mostrar el ramo con animación
+      const girasol1 = document.getElementById('girasol1');
+      const girasol2 = document.getElementById('girasol2');
+      const girasol3 = document.getElementById('girasol3');
+      const flores = document.querySelectorAll('.flor');
       const mensaje = document.getElementById('mensaje');
       
-      // Hacer crecer el girasol desde abajo
-      girasol.style.height = '280px';
+      // Hacer crecer los girasoles desde abajo
+      girasol1.style.height = '250px';
       
-      // Después de que crezca, agregar animación de mecido
       setTimeout(() => {
-        flor.style.animation = 'mecer 3s ease-in-out infinite';
+        girasol2.style.height = '270px';
         
-        // Mostrar mensaje
         setTimeout(() => {
-          mensaje.innerHTML = `
-            Para Jessinet, mi mejor amiga:<br><br>
-            Esta flor amarilla es para recordarte lo especial que eres:<br>
-            - Por tu corazón increíble y tu amistad sincera <span class="corazon">💛</span><br>
-            - Por todas las risas y momentos que compartimos <span class="corazon">💛</span><br>
-            - Por estar siempre ahí cuando te necesito <span class="corazon">💛</span><br><br>
-            Gracias por ser tal como eres. Nuestra amistad es uno de mis tesoros más preciados.<br><br>
-            Te aprecio mucho,<br>
-            Tu mejor amiga <span class="corazon">💛</span>
-          `;
-          mensaje.style.opacity = "1";
-        }, 1000);
-      }, 2000);
+          girasol3.style.height = '260px';
+          
+          // Agregar animación de mecido a todas las flores
+          setTimeout(() => {
+            flores.forEach(flor => {
+              flor.style.animation = 'mecer 4s ease-in-out infinite';
+            });
+            
+            // Mostrar mensaje
+            setTimeout(() => {
+              mensaje.innerHTML = `
+                Sé que querías un ramo real y yo te doy este a través de una pantalla :(<br>
+                Lo siento... Lo cierto es que hace mucho no nos vemos en persona pero eso no impide que tengas tus flores amarillas.<br><br>
+                Porque jamás serás una espectadora mientras yo exista o me quieras en tu vida y solo espero que estas flores tengan el mismo impacto que unas reales, ya que lo estoy desarrollando con mis propias manos y creo que eso lo hace más especial.<br><br>
+                En fin, eres una increíble persona y amiga y agradezco haberte conocido. Te mereces esto y mucho más.<br><br>
+                Att. Ferr con mucho cariño <span class="corazon">💛</span>
+              `;
+              mensaje.style.opacity = "1";
+            }, 1000);
+          }, 500);
+        }, 300);
+      }, 300);
     }
     
     function insistir() {
-      alert("¡Oh, vamos! ¿Seguro? 😢\n\nPiensa que es una flor muy especial...");
+      alert("¡Oh, vamos! ¿Seguro? 😢\n\nPiensa que es un ramo muy especial...");
     }
   </script>
 </body>
