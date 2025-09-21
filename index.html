@@ -3,71 +3,334 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tu flor amarilla 🌼</title>
+  <title>Tu flor amarilla especial 🌼</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #fff8dc, #fff0b3);
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #fff8dc, #fffacd, #fff0b3);
       text-align: center;
-      padding: 40px;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+      color: #444;
     }
+    
+    .container {
+      max-width: 600px;
+      width: 100%;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(255, 204, 0, 0.2);
+      margin: 20px 0;
+    }
+    
     h1 {
-      color: #ffbf00;
+      font-family: 'Dancing Script', cursive;
+      color: #e6b800;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
     }
+    
+    p {
+      margin: 15px 0;
+      line-height: 1.6;
+    }
+    
+    .btn-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 20px 0;
+    }
+    
     button {
-      background: #ffcc00;
+      background: linear-gradient(to bottom, #ffdb4d, #ffcc00);
       border: none;
       padding: 12px 24px;
       margin: 10px;
-      border-radius: 8px;
-      font-size: 18px;
+      border-radius: 50px;
+      font-size: 1rem;
       cursor: pointer;
-      transition: transform 0.2s;
+      transition: all 0.3s;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      font-weight: 500;
+      min-width: 120px;
     }
+    
     button:hover {
-      transform: scale(1.1);
-      background: #ffdb4d;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+      background: linear-gradient(to bottom, #ffe066, #ffd11a);
     }
+    
+    button:active {
+      transform: translateY(1px);
+    }
+    
     #flor {
-      font-size: 80px;
+      font-size: 100px;
+      margin: 30px 0;
       opacity: 0;
-      transform: scale(0.1);
+      transform: scale(0.1) rotate(-180deg);
       transition: all 1s ease-in-out;
-      margin-top: 30px;
+      filter: drop-shadow(0 5px 10px rgba(230, 184, 0, 0.4));
     }
+    
     #mensaje {
-      font-size: 20px;
-      margin-top: 20px;
+      font-size: 1.2rem;
+      margin: 20px 0;
       color: #444;
       opacity: 0;
-      transition: opacity 1s;
+      transition: opacity 1.5s ease-in-out;
+      font-family: 'Dancing Script', cursive;
+      line-height: 1.6;
     }
+    
+    .pregunta {
+      display: none;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+    
+    .pregunta.activa {
+      display: block;
+    }
+    
+    .corazon {
+      color: #ff4d4d;
+      display: inline-block;
+      animation: latido 1.5s infinite;
+    }
+    
     .mostrar {
       opacity: 1 !important;
-      transform: scale(1) !important;
+      transform: scale(1) rotate(0deg) !important;
+    }
+    
+    .flores-fondo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.15;
+    }
+    
+    .flor-fondo {
+      position: absolute;
+      font-size: 30px;
+      opacity: 0;
+      animation: caer 10s linear infinite;
+    }
+    
+    .progreso {
+      width: 100%;
+      height: 8px;
+      background: #ffe6b3;
+      border-radius: 4px;
+      margin: 20px 0;
+      overflow: hidden;
+    }
+    
+    .barra-progreso {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(to right, #ffcc00, #ffdb4d);
+      border-radius: 4px;
+      transition: width 0.5s ease-in-out;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes latido {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    
+    @keyframes caer {
+      0% { 
+        transform: translateY(-50px) rotate(0deg); 
+        opacity: 0;
+      }
+      10% { 
+        opacity: 1;
+      }
+      90% { 
+        opacity: 0.8;
+      }
+      100% { 
+        transform: translateY(100vh) rotate(360deg); 
+        opacity: 0;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+      
+      button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        min-width: 110px;
+      }
+      
+      #flor {
+        font-size: 80px;
+      }
+      
+      #mensaje {
+        font-size: 1.1rem;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>¿Quieres tu flor amarilla? 🌼</h1>
-  <button onclick="mostrarFlor('sí')">Sí 💛</button>
-  <button onclick="mostrarFlor('no')">No 😅</button>
-
-  <div id="flor">🌼</div>
-  <div id="mensaje"></div>
+  <div class="flores-fondo" id="floresFondo"></div>
+  
+  <div class="container">
+    <div class="pregunta activa" id="pregunta1">
+      <h1>Hola mi amor 💛</h1>
+      <p>¿Te gustaría recibir una flor amarilla hoy?</p>
+      <div class="btn-container">
+        <button onclick="responder('sí', 1)">¡Claro que sí! 💛</button>
+        <button onclick="responder('no', 1)">Mmh, no sé 😅</button>
+      </div>
+    </div>
+    
+    <div class="pregunta" id="pregunta2">
+      <h1>¿Sabes qué representa la flor amarilla?</h1>
+      <p>Es símbolo de amistad, alegría y cariño sincero</p>
+      <div class="btn-container">
+        <button onclick="responder('sí', 2)">¡Qué bonito! 💛</button>
+        <button onclick="responder('no', 2)">Cuéntame más</button>
+      </div>
+    </div>
+    
+    <div class="pregunta" id="pregunta3">
+      <h1>¿Recuerdas nuestro primer día juntos?</h1>
+      <p>Ese día supe que quería estar a tu lado</p>
+      <div class="btn-container">
+        <button onclick="responder('sí', 3)">¡Cómo olvidarlo! 💛</button>
+        <button onclick="responder('no', 3)">Recuérdamelo</button>
+      </div>
+    </div>
+    
+    <div class="pregunta" id="pregunta4">
+      <h1>¿Sabes por qué te mereces esta flor?</h1>
+      <p>Porque iluminas mis días con tu sonrisa</p>
+      <div class="btn-container">
+        <button onclick="responder('sí', 4)">Eres tan dulce 💛</button>
+        <button onclick="responder('no', 4)">¿Por qué?</button>
+      </div>
+    </div>
+    
+    <div class="pregunta" id="pregunta5">
+      <h1>Última pregunta...</h1>
+      <p>¿Aceptas esta flor amarilla como símbolo de mi cariño?</p>
+      <div class="btn-container">
+        <button onclick="mostrarFlorFinal()">¡Sí, acepto! 💛</button>
+        <button onclick="insistir()">Tal vez después</button>
+      </div>
+    </div>
+    
+    <div class="progreso">
+      <div class="barra-progreso" id="barraProgreso"></div>
+    </div>
+    
+    <div id="flor">🌼</div>
+    <div id="mensaje"></div>
+  </div>
 
   <script>
-    function mostrarFlor(opcion) {
+    let preguntaActual = 1;
+    const totalPreguntas = 5;
+    
+    // Crear flores de fondo
+    const floresFondo = document.getElementById('floresFondo');
+    const flores = ['🌼', '🌻', '💛', '✨'];
+    
+    for (let i = 0; i < 20; i++) {
+      const flor = document.createElement('div');
+      flor.className = 'flor-fondo';
+      flor.innerHTML = flores[Math.floor(Math.random() * flores.length)];
+      flor.style.left = Math.random() * 100 + 'vw';
+      flor.style.animationDelay = Math.random() * 10 + 's';
+      flor.style.fontSize = (Math.random() * 20 + 20) + 'px';
+      floresFondo.appendChild(flor);
+    }
+    
+    function responder(respuesta, numeroPregunta) {
+      // Avanzar la barra de progreso
+      const barraProgreso = document.getElementById('barraProgreso');
+      barraProgreso.style.width = (preguntaActual / totalPreguntas * 100) + '%';
+      
+      // Ocultar pregunta actual
+      document.getElementById('pregunta' + preguntaActual).classList.remove('activa');
+      
+      // Avanzar a la siguiente pregunta
+      preguntaActual++;
+      
+      if (preguntaActual <= totalPreguntas) {
+        setTimeout(() => {
+          document.getElementById('pregunta' + preguntaActual).classList.add('activa');
+        }, 400);
+      } else {
+        // Si es la última pregunta, mostrar la flor
+        setTimeout(mostrarFlorFinal, 500);
+      }
+    }
+    
+    function mostrarFlorFinal() {
+      // Completar la barra de progreso
+      document.getElementById('barraProgreso').style.width = '100%';
+      
+      // Ocultar todas las preguntas
+      for (let i = 1; i <= totalPreguntas; i++) {
+        document.getElementById('pregunta' + i).classList.remove('activa');
+      }
+      
+      // Mostrar la flor y el mensaje
       const flor = document.getElementById('flor');
       const mensaje = document.getElementById('mensaje');
+      
       flor.classList.add('mostrar');
-      mensaje.style.opacity = "1";
-
-      if(opcion === 'sí') {
-        mensaje.innerHTML = "Esta flor amarilla es solo para ti 💛✨";
-      } else {
-        mensaje.innerHTML = "Demasiado tarde... igual te llevas tu flor 🌼😉";
-      }
+      
+      setTimeout(() => {
+        mensaje.innerHTML = `
+          Para mi persona favorita:<br><br>
+          Esta flor amarilla representa todo lo que siento por ti:<br>
+          - La alegría que me das cada día <span class="corazon">💛</span><br>
+          - La calidez de tu amor que ilumina mi vida <span class="corazon">💛</span><br>
+          - La amistad que fortalece nuestro romance <span class="corazon">💛</span><br><br>
+          Gracias por ser tú. Te amo más de lo que las palabras pueden expresar.<br><br>
+          Atentamente,<br>
+          Tu novia que te adora <span class="corazon">💛</span>
+        `;
+        mensaje.style.opacity = "1";
+      }, 1000);
+    }
+    
+    function insistir() {
+      alert("¡Oh, vamos! ¿Seguro? 😢\n\nPiensa que es una flor muy especial...");
     }
   </script>
 </body>
