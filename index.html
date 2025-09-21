@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tu Flor Amarilla Especial 🌼</title>
+  <title>Para Jessinet 💛</title>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * {
@@ -113,22 +113,22 @@
     .hoja {
       position: absolute;
       width: 40px;
-      height: 30px;
+      height: 25px;
       background: #7cb342;
       border-radius: 50% 0 50% 50%;
-      transform: rotate(-45deg);
       z-index: 1;
     }
     
     .hoja.izquierda {
       left: -15px;
       top: 60%;
+      transform: rotate(-30deg);
     }
     
     .hoja.derecha {
       right: -15px;
       top: 40%;
-      transform: rotate(135deg);
+      transform: rotate(120deg);
       border-radius: 50% 50% 50% 0;
     }
     
@@ -283,44 +283,25 @@
   
   <div class="container">
     <div class="pregunta activa" id="pregunta1">
-      <h1>Hola mi amor 💛</h1>
-      <p>¿Te gustaría recibir una flor amarilla hoy?</p>
+      <h1>Hola Jessinet 💛</h1>
+      <p>¿Sabes qué día es hoy?</p>
       <div class="btn-container">
-        <button onclick="responder('sí', 1)">¡Claro que sí! 💛</button>
-        <button onclick="responder('no', 1)">Mmh, no sé 😅</button>
+        <button onclick="responder('si', 1)">¡Sí, obvio! 😊</button>
+        <button onclick="responder('no', 1)">No, no lo sé 😅</button>
       </div>
     </div>
     
     <div class="pregunta" id="pregunta2">
-      <h1>¿Sabes qué representa la flor amarilla?</h1>
-      <p>Es símbolo de amistad, alegría y cariño sincero</p>
+      <h1>¿Sabes por qué te mereces una flor?</h1>
+      <p>Porque eres una amiga increíble</p>
       <div class="btn-container">
-        <button onclick="responder('sabes', 2)">¡Qué bonito! 💛</button>
-        <button onclick="responder('cuentame', 2)">Cuéntame más</button>
+        <button onclick="responder('siguiente', 2)">Siguiente 💛</button>
       </div>
     </div>
     
     <div class="pregunta" id="pregunta3">
-      <h1>¿Recuerdas nuestro primer día juntos?</h1>
-      <p>Ese día supe que quería estar a tu lado</p>
-      <div class="btn-container">
-        <button onclick="responder('recuerdo', 3)">¡Cómo olvidarlo! 💛</button>
-        <button onclick="responder('recuerdame', 3)">Recuérdamelo</button>
-      </div>
-    </div>
-    
-    <div class="pregunta" id="pregunta4">
-      <h1>¿Sabes por qué te mereces esta flor?</h1>
-      <p>Porque iluminas mis días con tu sonrisa</p>
-      <div class="btn-container">
-        <button onclick="responder('mereces', 4)">Eres tan dulce 💛</button>
-        <button onclick="responder('porque', 4)">¿Por qué?</button>
-      </div>
-    </div>
-    
-    <div class="pregunta" id="pregunta5">
       <h1>Última pregunta...</h1>
-      <p>¿Aceptas esta flor amarilla como símbolo de mi cariño?</p>
+      <p>¿Aceptas esta flor como símbolo de mi amistad?</p>
       <div class="btn-container">
         <button onclick="mostrarFlorFinal()">¡Sí, acepto! 💛</button>
         <button onclick="insistir()">Tal vez después</button>
@@ -356,7 +337,7 @@
 
   <script>
     let preguntaActual = 1;
-    const totalPreguntas = 5;
+    const totalPreguntas = 3;
     
     // Crear flores de fondo
     const floresFondo = document.getElementById('floresFondo');
@@ -373,27 +354,30 @@
     }
     
     function responder(respuesta, numeroPregunta) {
-      // Si estamos en la pregunta 2 y el usuario quiere saber más
-      if (numeroPregunta === 2 && respuesta === 'cuentame') {
-        document.getElementById('pregunta2').querySelector('p').innerHTML = 
-          "Las flores amarillas representan la amistad, la alegría y la felicidad. Pero para mí, representan también el calor de tu sonrisa y la luz que aportas a mi vida cada día.";
+      // Si estamos en la pregunta 1
+      if (numeroPregunta === 1) {
+        if (respuesta === 'no') {
+          document.getElementById('pregunta1').querySelector('p').innerHTML = 
+            "La verdad ni yo sé, solo sé que se le regalan flores a las personas que quieres mucho 💛";
+        } else {
+          document.getElementById('pregunta1').querySelector('p').innerHTML = 
+            "¡Jajaja lo sabía! Eres la mejor 💛";
+        }
+        
+        // Esperar un momento y luego avanzar
+        setTimeout(() => {
+          avanzarPregunta();
+        }, 2000);
         return;
       }
       
-      // Si estamos en la pregunta 3 y el usuario quiere que le recuerden
-      if (numeroPregunta === 3 && respuesta === 'recuerdame') {
-        document.getElementById('pregunta3').querySelector('p').innerHTML = 
-          "Recuerdo tu sonrisa, tu mirada y cómo el tiempo pareció detenerse. Fue el día que comenzó esta hermosa historia que seguimos escribiendo juntos.";
-        return;
+      // Para la pregunta 2, simplemente avanzar
+      if (numeroPregunta === 2) {
+        avanzarPregunta();
       }
-      
-      // Si estamos en la pregunta 4 y el usuario pregunta por qué
-      if (numeroPregunta === 4 && respuesta === 'porque') {
-        document.getElementById('pregunta4').querySelector('p').innerHTML = 
-          "Porque eres una persona increíble que ilumina cada uno de mis días. Por tu bondad, tu amor y tu forma única de hacer feliz a los demás.";
-        return;
-      }
-      
+    }
+    
+    function avanzarPregunta() {
       // Avanzar la barra de progreso
       const barraProgreso = document.getElementById('barraProgreso');
       barraProgreso.style.width = (preguntaActual / totalPreguntas * 100) + '%';
@@ -435,14 +419,14 @@
         // Mostrar mensaje
         setTimeout(() => {
           mensaje.innerHTML = `
-            Para mi persona favorita:<br><br>
-            Esta flor amarilla representa todo lo que siento por ti:<br>
-            - La alegría que me das cada día <span class="corazon">💛</span><br>
-            - La calidez de tu amor que ilumina mi vida <span class="corazon">💛</span><br>
-            - La amistad que fortalece nuestro romance <span class="corazon">💛</span><br><br>
-            Gracias por ser tú. Te amo más de lo que las palabras pueden expresar.<br><br>
-            Atentamente,<br>
-            Tu novia que te adora <span class="corazon">💛</span>
+            Para Jessinet, mi mejor amiga:<br><br>
+            Esta flor amarilla es para recordarte lo especial que eres:<br>
+            - Por tu corazón increíble y tu amistad sincera <span class="corazon">💛</span><br>
+            - Por todas las risas y momentos que compartimos <span class="corazon">💛</span><br>
+            - Por estar siempre ahí cuando te necesito <span class="corazon">💛</span><br><br>
+            Gracias por ser tal como eres. Nuestra amistad es uno de mis tesoros más preciados.<br><br>
+            Te aprecio mucho,<br>
+            Tu mejor amiga <span class="corazon">💛</span>
           `;
           mensaje.style.opacity = "1";
         }, 1000);
@@ -455,4 +439,3 @@
   </script>
 </body>
 </html>
-
